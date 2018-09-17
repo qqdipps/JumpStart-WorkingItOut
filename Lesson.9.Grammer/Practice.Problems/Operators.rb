@@ -175,104 +175,104 @@ puts type + type1
 puts ""
 
 =begin 
-{18-09-17 15:12}Savannahs-MBP:~/AdaJumpStart/Lesson.9.Grammer/Practice.Problems@master✗✗✗✗✗✗ qqdipps% ruby Operators.rb
-f + hx
+{18-09-17 15:27}Savannahs-MBP:~/AdaJumpStart/Lesson.9.Grammer/Practice.Problems@master✗✗✗✗✗✗ qqdipps% ruby Operators.rb
+f + h
 answer: 5
 result answer is correct: true
-Data type of "result:" Fixnum
+Data type of "result": Fixnum
 
 g + h
 answer: 14.0
 result answer is correct: true
-Data type of "result:"  float
+Data type of "result":  float
 
 d - f
 answer: 8
 result answer is correct: true
-Data type of "result:" Fixnum
+Data type of "result": Fixnum
 
 g + e
 answer: 6.0
 result answer is correct: true
-Data type of "result:"  float
+Data type of "result":  float
 
 (h + i) - f
 answer: 2.5
 result answer is correct: true
-Data type of "result:"  float
+Data type of "result":  float
 
 (d - f) + e
 answer: 13.0
 result answer is correct: true
-Data type of "result:"  float
+Data type of "result":  float
 
 d * f
 answer: 20
 result answer is correct: true
-Data type of "result:" Fixnum
+Data type of "result": Fixnum
 
 g * i
 answer: 16.5
 result answer is correct: true
-Data type of "result:"  float
+Data type of "result":  float
 
 f * g
 answer: 22.0
 result answer is correct: true
-Data type of "result:"  float
+Data type of "result":  float
 
 d / f
 answer: 5
 result answer is correct: true
-Data type of "result:" Fixnum
+Data type of "result": Fixnum
 
 d / e
 answer: 2.0
 result answer is correct: true
-Data type of "result:"  float
+Data type of "result":  float
 
 e / f
 answer: 2.5
 result answer is correct: true
-Data type of "result:"  float
+Data type of "result":  float
 
 (g * f) / f
 answer: 11.0
 result answer is correct: true
-Data type of "result:"  float
+Data type of "result":  float
 
 (d / f) * e
 answer: 25.0
 result answer is correct: true
-Data type of "result:"  float
+Data type of "result":  float
 
 21 / 5
 answer: 4
 result answer is correct: true
-Data type of "result:" Fixnum
+Data type of "result": Fixnum
 
 14 /5
 answer: 2
 result answer is correct: true
-Data type of "result:" Fixnum
+Data type of "result": Fixnum
 
 10 % 3
 answer: 1
 result answer is correct: true
-Data type of "result:" Fixnum
+Data type of "result": Fixnum
 
 20 % 2
 answer: 0
 result answer is correct: true
-Data type of "result:" Fixnum
+Data type of "result": Fixnum
 
 4 % 5
 answer: 4
 result answer is correct: true
-Data type of "result:" Fixnum
+Data type of "result": Fixnum
 
 8 % 1
 answer: 0
 result answer is correct: true
-Data type of "result:" Fixnum
+Data type of "result": Fixnum
 =end	
