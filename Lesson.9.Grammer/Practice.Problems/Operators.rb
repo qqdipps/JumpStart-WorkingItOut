@@ -7,7 +7,7 @@ i = 1.5
 #Operation
 #Result	
 #DataType
-type = "Data type of \"result:\" "
+type = "Data type of \"result\": " # double quotes for pract. 
 type1 = "Fixnum"	# aka Integer
 type2 = " float"
 
