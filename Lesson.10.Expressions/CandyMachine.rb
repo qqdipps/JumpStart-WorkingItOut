@@ -34,6 +34,17 @@ print "How much money do you have? $ "
 moneyUser = gets.chomp.to_f #float (decimal)
 puts"" #format
 
+# checks user input format
+if moneyUser.class != "float"
+	#user statement for invalid input
+	puts "Invalid input. Please use numeric dollar formating." 
+	#user prompts for $
+	print "How much money do you have? $ "
+	#user input for $
+	moneyUser = gets.chomp.to_f #float (decimal)
+	puts"" #format
+end
+
 puts "Great! You have $ %0.2f" % [moneyUser] << ", 
 Let's see what we can do for you..."
 #each candy -> 1 row as string 
@@ -68,8 +79,16 @@ puts"" #format
 #user prompts for selection
 print "What tickles your fancy?: "
 #user input for selection
-candyUser = gets.chomp.upcase
+candyUser = gets.chomp.upcase # allow for input to be either upper or lower case
 
+#checks user input format and valid selection
+if candyUser != "A" || "B" || "C" || "D" || "E"
+	puts ""
+	puts "Wrong selection made! "
+	print " Try again. What is your selection (A, B, C, D, or E)?: "
+	candyUser = gets.chomp.upcase	
+
+end
 puts"" #format
 
 #user input selection compared to candy string to find selection
