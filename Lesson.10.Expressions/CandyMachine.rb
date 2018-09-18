@@ -83,10 +83,12 @@ if candyUser == mm.slice(0)
 		puts "beeboobeeep... enjoy your " << candy.slice(8..-1) << "!"
 		puts"tingchchch... don't forget your change: $ %0.2f" % [change]
 	elsif moneyUser > 0
-		short = candy.slice(3,4).to_f - moneyUser
+		#no return statement
+		short = candy.slice(3,4).to_f - moneyUser #calculates how much more is required
 		puts "Sorry! you don't have enough for " << candy.slice(8..-1) << "."
 		puts "You're short $ %0.2f" % [short] << ", but you may have enough for..."
 		
+		#checks if user has enough money for anything else.
 		if moneyUser >= mm.slice(3,4).to_f 
 			puts mm
 		end
@@ -110,21 +112,156 @@ if candyUser == mm.slice(0)
 end
 
 if candyUser == tw.slice(0)
-	print tw
+	#set generic variable for easy code re-use
+	candy = tw
+	#check if user has enough money for candy selected
+	if moneyUser >= candy.slice(3,4).to_f
+		change = moneyUser - candy.slice(3,4).to_f
+		#yes calculate change and return statement
+		puts "beeboobeeep... enjoy your " << candy.slice(8..-1) << "!"
+		puts"tingchchch... don't forget your change: $ %0.2f" % [change]
+	elsif moneyUser > 0
+		#no return statement
+		short = candy.slice(3,4).to_f - moneyUser #calculates how much more is required
+		puts "Sorry! you don't have enough for " << candy.slice(8..-1) << "."
+		puts "You're short $ %0.2f" % [short] << ", but you may have enough for..."
+		
+		#checks if user has enough money for anything else.
+		if moneyUser >= mm.slice(3,4).to_f 
+			puts mm
+		end
+		if moneyUser >= tw.slice(3,4).to_f 
+			puts tw
+		end
+		if moneyUser >= ah.slice(3,4).to_f 
+			puts ah
+		end
+		if moneyUser >= ss.slice(3,4).to_f 
+			puts ss
+		end
+		if moneyUser >= fr.slice(3,4).to_f 
+			puts fr
+		else
+			puts "nothing, you have enough for nothing. Sorry."
+		end
+	else
+		puts "Hey no money was inserted!"
+	end	
 end
 
 if candyUser == ah.slice(0)
-	print ah
+	#set generic variable for easy code re-use
+	candy = ah
+	#check if user has enough money for candy selected
+	if moneyUser >= candy.slice(3,4).to_f
+		change = moneyUser - candy.slice(3,4).to_f
+		#yes calculate change and return statement
+		puts "beeboobeeep... enjoy your " << candy.slice(8..-1) << "!"
+		puts"tingchchch... don't forget your change: $ %0.2f" % [change]
+	elsif moneyUser > 0
+		#no return statement
+		short = candy.slice(3,4).to_f - moneyUser #calculates how much more is required
+		puts "Sorry! you don't have enough for " << candy.slice(8..-1) << "."
+		puts "You're short $ %0.2f" % [short] << ", but you may have enough for..."
+		
+		#checks if user has enough money for anything else.
+		if moneyUser >= mm.slice(3,4).to_f 
+			puts mm
+		end
+		if moneyUser >= tw.slice(3,4).to_f 
+			puts tw
+		end
+		if moneyUser >= ah.slice(3,4).to_f 
+			puts ah
+		end
+		if moneyUser >= ss.slice(3,4).to_f 
+			puts ss
+		end
+		if moneyUser >= fr.slice(3,4).to_f 
+			puts fr
+		else
+			puts "nothing, you have enough for nothing. Sorry."
+		end
+	else
+		puts "Hey no money was inserted!"
+	end	
 end
 
 if candyUser == ss.slice(0)
-	print ss
+	#set generic variable for easy code re-use
+	candy = ss
+	#check if user has enough money for candy selected
+	if moneyUser >= candy.slice(3,4).to_f
+		change = moneyUser - candy.slice(3,4).to_f
+		#yes calculate change and return statement
+		puts "beeboobeeep... enjoy your " << candy.slice(8..-1) << "!"
+		puts"tingchchch... don't forget your change: $ %0.2f" % [change]
+	elsif moneyUser > 0
+		#no return statement
+		short = candy.slice(3,4).to_f - moneyUser #calculates how much more is required
+		puts "Sorry! you don't have enough for " << candy.slice(8..-1) << "."
+		puts "You're short $ %0.2f" % [short] << ", but you may have enough for..."
+		
+		#checks if user has enough money for anything else.
+		if moneyUser >= mm.slice(3,4).to_f 
+			puts mm
+		end
+		if moneyUser >= tw.slice(3,4).to_f 
+			puts tw
+		end
+		if moneyUser >= ah.slice(3,4).to_f 
+			puts ah
+		end
+		if moneyUser >= ss.slice(3,4).to_f 
+			puts ss
+		end
+		if moneyUser >= fr.slice(3,4).to_f 
+			puts fr
+		else
+			puts "nothing, you have enough for nothing. Sorry."
+		end
+	else
+		puts "Hey no money was inserted!"
+	end	
 end
 
 if candyUser == fr.slice(0)
-	print fr
-end 
-
+	#set generic variable for easy code re-use
+	candy = fr
+	#check if user has enough money for candy selected
+	if moneyUser >= candy.slice(3,4).to_f
+		change = moneyUser - candy.slice(3,4).to_f
+		#yes calculate change and return statement
+		puts "beeboobeeep... enjoy your " << candy.slice(8..-1) << "!"
+		puts"tingchchch... don't forget your change: $ %0.2f" % [change]
+	elsif moneyUser > 0
+		#no return statement
+		short = candy.slice(3,4).to_f - moneyUser #calculates how much more is required
+		puts "Sorry! you don't have enough for " << candy.slice(8..-1) << "."
+		puts "You're short $ %0.2f" % [short] << ", but you may have enough for..."
+		
+		#checks if user has enough money for anything else.
+		if moneyUser >= mm.slice(3,4).to_f 
+			puts mm
+		end
+		if moneyUser >= tw.slice(3,4).to_f 
+			puts tw
+		end
+		if moneyUser >= ah.slice(3,4).to_f 
+			puts ah
+		end
+		if moneyUser >= ss.slice(3,4).to_f 
+			puts ss
+		end
+		if moneyUser >= fr.slice(3,4).to_f 
+			puts fr
+		else
+			puts "nothing, you have enough for nothing. Sorry."
+		end
+	else
+		puts "Hey no money was inserted!"
+	end	
+end
 =begin
 
 4 test cases
