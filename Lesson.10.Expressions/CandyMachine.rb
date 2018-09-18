@@ -22,21 +22,60 @@ tell them so, if they can, calculate and display their change
 
 [Optional] Do something appropriate when the buyer
 enters an invalid amount for the money and an invalid selection
-end
+=end
 
 #Opening statment
+puts "Welcome to Virtual Candy Machine!"
+puts"" #format
+
 #user prompts for $
+print "How much money do you have? $"
 #user input for $
-#display candy
+moneyUser = gets.chomp.to_f #float (decimal)
+
+puts "Great! You have $#{moneyUser}, 
+Let's see what we can do for you..."
 #each candy -> 1 row as string 
+
 #M&M 
+mm = "A $0.75 M&M"
+
 #twix
+tw = "B $1.00 Twix"
+
 #airheads
+ah = "C $0.35 Air Head"
+
 #sour skittles
+ss = "D $1.25 Sour Skittles"
+
 #fruit roll-up
+fr = "E $0.55 Fruit Roll-Up"
+
+#display candy
+puts "Today we have: "
+puts mm
+puts tw
+puts ah
+puts ss
+puts fr
+
 #user prompts for selection
+print "What tickles your fancy?: "
 #user input for selection
+candyUser = gets.chomp.upcase
+
 #user input selection compared to candy string to find selection
+if <candyUser == mm.slice(0)>
+	print mm
+if <candyUser == tw.slice(0)>
+	print tw
+if <candyUser == ah.slice(0)>
+	print ah
+if <candyUser == ss.slice(0)>
+	print ss
+if <candyUser == fr.slice(0)>
+	print fr
 #$ input compared to $ of candy selected.
 # check if $ input > $ candy
 # if yes calc change
