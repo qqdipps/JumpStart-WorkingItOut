@@ -33,8 +33,8 @@ print "noun (singular object): "
 nounObject = gets.chomp.downcase
 
 #number
-print "number: "
-num = gets.chomp
+print "number (whole): "
+num = gets.chomp.to_i
 
 #adj object
 print "adj: "
