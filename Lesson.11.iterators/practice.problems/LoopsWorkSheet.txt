@@ -1,0 +1,95 @@
+
+1.
+dance 
+dance
+
+2. 
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+
+3.
+coding!
+coding!
+coding!
+fun!
+
+4.
+0 chicken(s)
+1 chicken(s)
+2 chicken(s)
+3 chicken(s)
+4 chicken(s)
+
+5. 
+0
+1
+4
+9
+16
+25
+36
+49
+64
+81
+100
+
+6.
+hello!
+hello!
+hello!
+hello!
+hello!
+
+7.
+1 animals(s)
+2 animals(s)
+3 animals(s)
+
+8.
+1
+4
+9
+
+9.
+6
+
+10.
+You got a winner!
+
+11.
+hi
+hi
+hi
+
+12.
+hi
+hi
+hi
+bye
+
+13.
+1
+2
+3
+
+14.
+8
+
+15.
+ada!
+ada!
+ada!
+
+16.
+a while (infinite loop)
+
+17.
+o hai

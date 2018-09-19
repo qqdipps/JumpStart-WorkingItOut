@@ -1,0 +1,28 @@
+1.
+old
+new
+used
+
+2.
+I love banana!
+I love apple!
+I love kiwi!
+
+3.
+8
+5
+3
+10
+14
+2
+
+4.
+31
+
+5.
+Regular values like 8
+Regular values like 5
+Regular values like 3
+Special case!
+Regular values like 14
+Regular values like 2
