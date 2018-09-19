@@ -24,47 +24,61 @@ tell them so, if they can, calculate and display their change
 enters an invalid amount for the money and an invalid selection
 =end
 
+puts "" #formatting
+
+#candy in the candy machine, initializing constant string vars
+#M&M 
+mm = "A $0.75 M&M"
+#twix
+tw = "B $1.00 Twix"
+#airheads
+ah = "C $0.35 Air Head"
+#sour skittles
+ss = "D $1.25 Sour Skittles"
+#fruit roll-up
+fr = "E $0.55 Fruit Roll-Up"
+
 #Opening statment
 puts "Welcome to Virtual Candy Machine!"
+
 puts"" #format
 
 #user prompts for $
 print "How much money do you have? $ "
+
 #user input for $
-moneyUser = gets.chomp.to_f #float (decimal)
+moneyUser = gets.chomp 
+
 puts"" #format
 
 # checks user input format
-if moneyUser.class != "float"
+# Checks by converting moneyUser to num types (i or f (also get checked for corrected decimal can't be greater then hundredths place)) then back to string and compares to orginal input.
+# Non-digits get dropped or equal 0. So if non-digits are contained input it will be evlaute as false; 
+# 'while !(false)' thus 'while true' excutes while block, second || statement can be ignored.
+# If no non-digits 'while !(true)' thus 'while false', now second || statement will be evaluated.
+# If money is less than 0  statement evaluates as true, 'while false || true' thus 'while true' : while block will be
+# executed. If money is not less than 0; 'while false || false' : while block will be skipped.
+# If while block is executed then loops until correct number format not less than 0 is entered by user.
+while (!( "%0.2f" % [moneyUser.to_f] == moneyUser || moneyUser.to_i.to_s == moneyUser) || moneyUser.to_f < 0) #money should be positive and numeric
+
 	#user statement for invalid input
-	puts "Invalid input. Please use numeric dollar formating." 
+	puts "Please insert some money using numeric dollar formatting." 
+	
 	#user prompts for $
 	print "How much money do you have? $ "
+	
 	#user input for $
-	moneyUser = gets.chomp.to_f #float (decimal)
+	moneyUser = gets.chomp #float (decimal)
 	puts"" #format
 end
 
+moneyUser = moneyUser.to_f #Converts var to type float for comparison of candy cost.
+
+#user experiance statement, re-cap
 puts "Great! You have $ %0.2f" % [moneyUser] << ", 
 Let's see what we can do for you..."
-#each candy -> 1 row as string 
 
 puts"" #format
-
-#M&M 
-mm = "A $0.75 M&M"
-
-#twix
-tw = "B $1.00 Twix"
-
-#airheads
-ah = "C $0.35 Air Head"
-
-#sour skittles
-ss = "D $1.25 Sour Skittles"
-
-#fruit roll-up
-fr = "E $0.55 Fruit Roll-Up"
 
 #display candy
 puts "Today we have: "
@@ -78,224 +92,96 @@ puts"" #format
 
 #user prompts for selection
 print "What tickles your fancy?: "
+
 #user input for selection
 candyUser = gets.chomp.upcase # allow for input to be either upper or lower case
 
 #checks user input format and valid selection
-if candyUser != "A" || "B" || "C" || "D" || "E"
+# If input is equal to A,B,C,D or E. statement evaluates as 'while !(true)', 
+# which evaluates as 'while false' whch skips 'while' block.
+# If input is not equal to A,B,C,D or E. statement evaluates as 'while !(false)', 
+# which evaluates as 'while true' whch executes 'while' block.
+# 'while' loops until input is equal to A,B,C,D or E.
+while ! (candyUser == "A" || candyUser == "B" || candyUser == "C" || candyUser == "D" || candyUser == "E")
 	puts ""
-	puts "Wrong selection made! "
-	print " Try again. What is your selection (A, B, C, D, or E)?: "
-	candyUser = gets.chomp.upcase	
+	
+	# notifies user of invlaid selection
+	puts "Invalid selection processed... "
 
+	#user prompts for selection
+	print "Try again. What is your selection (A, B, C, D, or E)?: "
+
+
+	#user input for selection
+	candyUser = gets.chomp.upcase	
 end
+
 puts"" #format
 
-#user input selection compared to candy string to find selection
-if candyUser == mm.slice(0)
-	#set generic variable for easy code re-use
-	candy = mm
-	#check if user has enough money for candy selected
-	if moneyUser >= candy.slice(3,4).to_f
-		change = moneyUser - candy.slice(3,4).to_f
-		#yes calculate change and return statement
-		puts "beeboobeeep... enjoy your " << candy.slice(8..-1) << "!"
-		puts"tingchchch... don't forget your change: $ %0.2f" % [change]
-	elsif moneyUser > 0
-		#no return statement
-		short = candy.slice(3,4).to_f - moneyUser #calculates how much more is required
-		puts "Sorry! you don't have enough for " << candy.slice(8..-1) << "."
-		puts "You're short $ %0.2f" % [short] << ", but you may have enough for..."
+
+#candy counter is an array that contains all the candy variables
+candy_drawer = [mm,tw,ah,ss,fr]
+
+#for each item in candy_drawer iterate through were item = candy
+candy_drawer.each do |candy| 
+
+	#user input selection compared to candy string to find selection
+	if candyUser == candy.slice(0)
 		
-		#checks if user has enough money for anything else.
-		if moneyUser >= mm.slice(3,4).to_f 
-			puts mm
-		end
-		if moneyUser >= tw.slice(3,4).to_f 
-			puts tw
-		end
-		if moneyUser >= ah.slice(3,4).to_f 
-			puts ah
-		end
-		if moneyUser >= ss.slice(3,4).to_f 
-			puts ss
-		end
-		if moneyUser >= fr.slice(3,4).to_f 
-			puts fr
-		else
-			puts "nothing, you have enough for nothing. Sorry."
-		end
-	else
-		puts "Hey no money was inserted!"
-	end	
-end
-
-if candyUser == tw.slice(0)
-	#set generic variable for easy code re-use
-	candy = tw
-	#check if user has enough money for candy selected
-	if moneyUser >= candy.slice(3,4).to_f
-		change = moneyUser - candy.slice(3,4).to_f
-		#yes calculate change and return statement
-		puts "beeboobeeep... enjoy your " << candy.slice(8..-1) << "!"
-		puts"tingchchch... don't forget your change: $ %0.2f" % [change]
-	elsif moneyUser > 0
-		#no return statement
-		short = candy.slice(3,4).to_f - moneyUser #calculates how much more is required
-		puts "Sorry! you don't have enough for " << candy.slice(8..-1) << "."
-		puts "You're short $ %0.2f" % [short] << ", but you may have enough for..."
+		#check if user has enough money for candy selected		
+		if moneyUser >= candy.slice(3,4).to_f
+			#yes calculate change and return statement
+			change = moneyUser - candy.slice(3,4).to_f
+			puts "beeboobeeep... enjoy your " << candy.slice(8..-1) << "!"
+			puts"tingchchch... don't forget your change: $ %0.2f" % [change]
 		
-		#checks if user has enough money for anything else.
-		if moneyUser >= mm.slice(3,4).to_f 
-			puts mm
-		end
-		if moneyUser >= tw.slice(3,4).to_f 
-			puts tw
-		end
-		if moneyUser >= ah.slice(3,4).to_f 
-			puts ah
-		end
-		if moneyUser >= ss.slice(3,4).to_f 
-			puts ss
-		end
-		if moneyUser >= fr.slice(3,4).to_f 
-			puts fr
-		else
-			puts "nothing, you have enough for nothing. Sorry."
-		end
-	else
-		puts "Hey no money was inserted!"
-	end	
+		elsif moneyUser > 0
+			#no calculates amount needed and return statement
+			short = candy.slice(3,4).to_f - moneyUser #calculates how much more is required
+			puts "Sorry! you don't have enough for " << candy.slice(8..-1) << "."
+			puts "You're short $ %0.2f" % [short] << ", but you may have enough for..."
+			
+			#checks if user has enough money for anything else.
+			if moneyUser >= mm.slice(3,4).to_f 
+				puts mm
+			end
+			if moneyUser >= tw.slice(3,4).to_f 
+				puts tw
+			end
+			if moneyUser >= ah.slice(3,4).to_f 
+				puts ah
+			end
+			if moneyUser >= ss.slice(3,4).to_f 
+				puts ss
+			end
+			if moneyUser >= fr.slice(3,4).to_f 
+				puts fr
+			else
+				puts "nothing, you have enough for nothing. Sorry."
+			end
+		else 
+			puts " Hey you didn't put any money in!"
+		end	
+	end
 end
+puts ""
+=begin	
 
-if candyUser == ah.slice(0)
-	#set generic variable for easy code re-use
-	candy = ah
-	#check if user has enough money for candy selected
-	if moneyUser >= candy.slice(3,4).to_f
-		change = moneyUser - candy.slice(3,4).to_f
-		#yes calculate change and return statement
-		puts "beeboobeeep... enjoy your " << candy.slice(8..-1) << "!"
-		puts"tingchchch... don't forget your change: $ %0.2f" % [change]
-	elsif moneyUser > 0
-		#no return statement
-		short = candy.slice(3,4).to_f - moneyUser #calculates how much more is required
-		puts "Sorry! you don't have enough for " << candy.slice(8..-1) << "."
-		puts "You're short $ %0.2f" % [short] << ", but you may have enough for..."
-		
-		#checks if user has enough money for anything else.
-		if moneyUser >= mm.slice(3,4).to_f 
-			puts mm
-		end
-		if moneyUser >= tw.slice(3,4).to_f 
-			puts tw
-		end
-		if moneyUser >= ah.slice(3,4).to_f 
-			puts ah
-		end
-		if moneyUser >= ss.slice(3,4).to_f 
-			puts ss
-		end
-		if moneyUser >= fr.slice(3,4).to_f 
-			puts fr
-		else
-			puts "nothing, you have enough for nothing. Sorry."
-		end
-	else
-		puts "Hey no money was inserted!"
-	end	
-end
+Test case
+------------
+1. a) enough money, b) correct input types 
+2. a) enough money, b) incorrect input types moneyUser: alpha, alpha-numeric, extra decimal, candyUser: not ABCD or E)
+3. a) not enough money, but enough to buy something else , b) candyUser: lower case
+4. a) not enough money for anything, b) moneyUser:  neg value, 7$0
 
-if candyUser == ss.slice(0)
-	#set generic variable for easy code re-use
-	candy = ss
-	#check if user has enough money for candy selected
-	if moneyUser >= candy.slice(3,4).to_f
-		change = moneyUser - candy.slice(3,4).to_f
-		#yes calculate change and return statement
-		puts "beeboobeeep... enjoy your " << candy.slice(8..-1) << "!"
-		puts"tingchchch... don't forget your change: $ %0.2f" % [change]
-	elsif moneyUser > 0
-		#no return statement
-		short = candy.slice(3,4).to_f - moneyUser #calculates how much more is required
-		puts "Sorry! you don't have enough for " << candy.slice(8..-1) << "."
-		puts "You're short $ %0.2f" % [short] << ", but you may have enough for..."
-		
-		#checks if user has enough money for anything else.
-		if moneyUser >= mm.slice(3,4).to_f 
-			puts mm
-		end
-		if moneyUser >= tw.slice(3,4).to_f 
-			puts tw
-		end
-		if moneyUser >= ah.slice(3,4).to_f 
-			puts ah
-		end
-		if moneyUser >= ss.slice(3,4).to_f 
-			puts ss
-		end
-		if moneyUser >= fr.slice(3,4).to_f 
-			puts fr
-		else
-			puts "nothing, you have enough for nothing. Sorry."
-		end
-	else
-		puts "Hey no money was inserted!"
-	end	
-end
+----------TEST CASE 1---------
+{18-09-19 0:18}Savannahs-MBP:~/AdaJumpStart/Lesson.10.Expressions@master✗✗✗✗✗✗ qqdipps% ruby CandyMachine.rb
 
-if candyUser == fr.slice(0)
-	#set generic variable for easy code re-use
-	candy = fr
-	#check if user has enough money for candy selected
-	if moneyUser >= candy.slice(3,4).to_f
-		change = moneyUser - candy.slice(3,4).to_f
-		#yes calculate change and return statement
-		puts "beeboobeeep... enjoy your " << candy.slice(8..-1) << "!"
-		puts"tingchchch... don't forget your change: $ %0.2f" % [change]
-	elsif moneyUser > 0
-		#no return statement
-		short = candy.slice(3,4).to_f - moneyUser #calculates how much more is required
-		puts "Sorry! you don't have enough for " << candy.slice(8..-1) << "."
-		puts "You're short $ %0.2f" % [short] << ", but you may have enough for..."
-		
-		#checks if user has enough money for anything else.
-		if moneyUser >= mm.slice(3,4).to_f 
-			puts mm
-		end
-		if moneyUser >= tw.slice(3,4).to_f 
-			puts tw
-		end
-		if moneyUser >= ah.slice(3,4).to_f 
-			puts ah
-		end
-		if moneyUser >= ss.slice(3,4).to_f 
-			puts ss
-		end
-		if moneyUser >= fr.slice(3,4).to_f 
-			puts fr
-		else
-			puts "nothing, you have enough for nothing. Sorry."
-		end
-	else
-		puts "Hey no money was inserted!"
-	end	
-end
-=begin
-
-4 test cases
----------------
-1. enough money
-2. not enough money, but enough for something
-3. not enough money for anything
-4. no money (0.00)
-
-{18-09-18 15:46}Savannahs-MBP:~/AdaJumpStart/Lesson.10.Expressions@master✗✗✗✗✗✗ qqdipps% ruby CandyMachine.rb
 Welcome to Virtual Candy Machine!
 
-How much money do you have? $.9
+How much money do you have? $ 5
 
-Great! You have $ 0.90,
+Great! You have $ 5.00,
 Let's see what we can do for you...
 
 Today we have:
@@ -305,16 +191,56 @@ C $0.35 Air Head
 D $1.25 Sour Skittles
 E $0.55 Fruit Roll-Up
 
-What tickles your fancy?: A
+What tickles your fancy?: B
+
+beeboobeeep... enjoy your Twix!
+tingchchch... don't forget your change: $ 4.00
+
+-------------TEST CASE 2--------------
+{{18-09-19 0:37}Savannahs-MBP:~/AdaJumpStart/Lesson.10.Expressions@master✗✗✗✗✗✗ qqdipps% ruby CandyMachine.rb
+
+Welcome to Virtual Candy Machine!
+
+How much money do you have? $ SEVEN Dollars
+
+Please insert some money using numeric dollar formatting.
+How much money do you have? $ 7 dollars
+
+Please insert some money using numeric dollar formatting.
+How much money do you have? $ 7.008
+
+Please insert some money using numeric dollar formatting.
+How much money do you have? $ 7
+
+Great! You have $ 7.00,
+Let's see what we can do for you...
+
+Today we have:
+A $0.75 M&M
+B $1.00 Twix
+C $0.35 Air Head
+D $1.25 Sour Skittles
+E $0.55 Fruit Roll-Up
+
+What tickles your fancy?: F
+
+Invalid selection processed...
+Try again. What is your selection (A, B, C, D, or E)?: M&M
+
+Invalid selection processed...
+Try again. What is your selection (A, B, C, D, or E)?: A
 
 beeboobeeep... enjoy your M&M!
-tingchchch... don't forget your change: $ 0.15
-{18-09-18 15:46}Savannahs-MBP:~/AdaJumpStart/Lesson.10.Expressions@master✗✗✗✗✗✗ qqdipps% ruby CandyMachine.rb
+tingchchch... don't forget your change: $ 6.25
+
+-------------TEST CASE 3--------------
+{18-09-19 0:40}Savannahs-MBP:~/AdaJumpStart/Lesson.10.Expressions@master✗✗✗✗✗✗ qqdipps% ruby CandyMachine.rb
+
 Welcome to Virtual Candy Machine!
 
-How much money do you have? $0.60
+How much money do you have? $ 1.02
 
-Great! You have $ 0.60,
+Great! You have $ 1.02,
 Let's see what we can do for you...
 
 Today we have:
@@ -324,18 +250,32 @@ C $0.35 Air Head
 D $1.25 Sour Skittles
 E $0.55 Fruit Roll-Up
 
-What tickles your fancy?: A
+What tickles your fancy?: d
 
-Sorry! you don't have enough for M&M.
-You're short $ 0.15, but you may have enough for...
+Sorry! you don't have enough for Sour Skittles.
+You're short $ 0.23, but you may have enough for...
+A $0.75 M&M
+B $1.00 Twix
 C $0.35 Air Head
 E $0.55 Fruit Roll-Up
-{18-09-18 15:47}Savannahs-MBP:~/AdaJumpStart/Lesson.10.Expressions@master✗✗✗✗✗✗ qqdipps% ruby CandyMachine.rb
+
+--------------TEST CASE 4-----------------
+{18-09-19 0:41}Savannahs-MBP:~/AdaJumpStart/Lesson.10.Expressions@master✗✗✗✗✗✗ qqdipps% ruby CandyMachine.rb
+
 Welcome to Virtual Candy Machine!
 
-How much money do you have? $0.20
+How much money do you have? $ -90
 
-Great! You have $ 0.20,
+Please insert some money using numeric dollar formatting.
+How much money do you have? $ -9.08
+
+Please insert some money using numeric dollar formatting.
+How much money do you have? $ .25
+
+Please insert some money using numeric dollar formatting.
+How much money do you have? $ 0.24
+
+Great! You have $ 0.24,
 Let's see what we can do for you...
 
 Today we have:
@@ -345,29 +285,9 @@ C $0.35 Air Head
 D $1.25 Sour Skittles
 E $0.55 Fruit Roll-Up
 
-What tickles your fancy?: A
+What tickles your fancy?: C
 
-Sorry! you don't have enough for M&M.
-You're short $ 0.55, but you may have enough for...
+Sorry! you don't have enough for Air Head.
+You're short $ 0.11, but you may have enough for...
 nothing, you have enough for nothing. Sorry.
-{18-09-18 15:48}Savannahs-MBP:~/AdaJumpStart/Lesson.10.Expressions@master✗✗✗✗✗✗ qqdipps% ruby CandyMachine.rb
-Welcome to Virtual Candy Machine!
-
-How much money do you have? $ 0
-
-Great! You have $ 0.00,
-Let's see what we can do for you...
-
-Today we have:
-A $0.75 M&M
-B $1.00 Twix
-C $0.35 Air Head
-D $1.25 Sour Skittles
-E $0.55 Fruit Roll-Up
-
-What tickles your fancy?: A
-
-Hey no money was inserted!	
-
-	
 =end
