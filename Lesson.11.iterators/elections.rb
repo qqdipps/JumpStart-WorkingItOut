@@ -35,10 +35,10 @@ roster = ["Marge", "Homer", "Lisa"]
 # Number of voters can be changed using voters var.
 voters = 10
 # Build ballot box from roster:
-# Intialize ballot_box hash with defualt of 0 (if key is called not in hash value is 0)
+# Intialize ballot_box hash with defualt of 0 (if key is called not in hash value is 0).
 # Key will be candidate, value will be number of votes.
 ballot_box = Hash.new(0)
-# For each candidate on the roster, add candidate to ballot_box with defualt value
+# For each candidate on the roster, add candidate to ballot_box with defualt value.
 roster.each do |candidate|
 	# Sets candidate equal to defualt value. 
 	ballot_box[candidate] = ballot_box[candidate]
@@ -83,6 +83,7 @@ voters.times do |i|
 	end
 
 	# Checks vote against candidate. Is vote write-in or number? 
+	# If statement is true then vote is number.
 	if vote.to_i.to_s == vote
 		# Vote changed to integer type for index calculations.
 		vote = vote.to_i
@@ -96,7 +97,7 @@ voters.times do |i|
 		ballot_box[roster[vote-1]] = (ballot_box[roster[vote-1]] + 1)
 		# Thank you and confirmation statement:
 		puts "Thank you voter ##{i+1} for placing your vote for " << roster[vote-1] << "."
-	
+	# Else vote is write-in.
 	# Adds write in candidate and tally to ballot_box.
 	# Works if voter writes in canididate in ballot_box.
 	else 
