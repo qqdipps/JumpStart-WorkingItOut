@@ -39,12 +39,12 @@ roster = ["Marge", "Homer", "Lisa"]
 voters = 10
 # Build ballot box from roster
 # Intialize ballot_box hash with defualt of 0 (if key is called not in hash value is 0)
-# Key will be canidate, value will # of votes.
+# Key will be canidate, value will be number of votes.
 ballot_box = Hash.new(0)
 # For each candidate on roster, add them to ballot box with defualt value
 roster.each do |candidate|
 # Sets candidate equal to defualt value. 
-ballot_box[candidate] = ballot_box[candidate]
+	ballot_box[candidate] = ballot_box[candidate]
 end
 
 
@@ -61,7 +61,7 @@ puts roster
 # User instructions to vote.
 puts "\nStep right in to the voting booth.\nFollow the instructions to cast your vote!\n\n"
 # Builds voting instructions using range. 
-#Range is based on how many canidates are in roster.
+# Range is based on how many canidates are in roster.
 (1..roster.length()).each do |i|  
 	# Generate vote number (i) using range.
 	# Vote is associated to Roster indexing by (i-1).
@@ -77,7 +77,7 @@ voters.times do |i|
 	# User input for vote.
 	vote = gets.chomp	
 	# Is vote valid? Checks if float is greater then # of canidates (string ok).
-	# Purpose is to avoid out of bounds error when vote isused to index roster. 
+	# Purpose is to avoid out of bounds error when vote is used to index roster. 
 	while (vote.to_f > roster.length())
 		# Invalid vote statement w/reason.
 		puts "Unable to process vote: invalid number selected.\n\n"
@@ -86,7 +86,7 @@ voters.times do |i|
 		# User input for re-vote.
 		vote = gets.chomp
 	end
-	# Checks vote against candidate. Is vote integer ? 
+	# Checks vote against candidate. Is vote integer? 
 	if vote.to_i.to_s == vote
 		# Vote changed to integer type for index calculations.
 		vote = vote.to_i
@@ -95,19 +95,27 @@ voters.times do |i|
 		# (vote-1) is the roster index position of canidate selected.
 		# Roster index returns selected canidate string.
 		# Canidate string used as key in ballot box hash.
-		# Canidate key is used to access value (which is voter count)
-		# Value is equal to previos value + 1 each time canidates recieves vote.
+		# Canidate key is used to access value (number of votes)
+		# Value updated to be equal to value + 1 each time canidates recieves vote.
 		ballot_box[roster[vote-1]] = (ballot_box[roster[vote-1]] + 1)
-		puts "	Thank you voter ##{i+1} for placing your vote for " << roster[vote-1] << "."
-	else 
+		# Thank you and confirmation user statement.
+		puts "Thank you voter ##{i+1} for placing your vote for " << roster[vote-1] << "."
+	
 		# Adds write in candidate and tally to ballot_box.
-		# Works if two voters write in same candidate.
+		# Also works if two voters write in same candidate.
+		# Also will work if vote writes in canididate on list.
+	else 
+		# formats write in vote
 		vote = vote.capitalize 
+		# Candidate is called as key in ballot_box hash.
+		# New candidate's value is set to default + 1.
+		# Candidate in hash is called current value is increased by 1.
 		ballot_box[vote] = ballot_box[vote] + 1 
-		puts "	Thank you voter ##{i+1} for write in vote for " << vote << "."
+		# Thank you and confirmation user statement.
+		puts "Thank you voter ##{i+1} for writing in a vote for " << vote << "."
 	end
 		# Give out "I voted" sticker.
-		puts "	Here's an \"I Voted!\" sitcker! "
+		puts "	Here's an \"I Voted!\" sitcker! \n\n "
 end
 puts ballot_box
 
