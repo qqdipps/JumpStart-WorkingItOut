@@ -30,14 +30,13 @@ Handle grammar of vote summary saying vote or votes appropriately
 # puts "\n new line check \n learned about new line"
 
 # Initialize candidate (array and dictionary) 
-# (dictionary then can tally votes).
-#==================================
+# (dictionary then can tally votes):
 # 'roster' is array containing candidate.
-# Update roster to add more candidate
+# Update roster to add more candidates.
 roster = ["Marge", "Homer", "Lisa"]
-# Number of voters can be changed using voters var 
+# Number of voters can be changed using voters var.
 voters = 10
-# Build ballot box from roster
+# Build ballot box from roster:
 # Intialize ballot_box hash with defualt of 0 (if key is called not in hash value is 0)
 # Key will be canidate, value will be number of votes.
 ballot_box = Hash.new(0)
@@ -48,13 +47,13 @@ roster.each do |candidate|
 	ballot_box[candidate] = ballot_box[candidate]
 end
 
-# Election statement.
+# Election statement:
 puts "\nThe Simpsons are running for office!"
 puts "You're vote will decide who will be the Springfield Comptroller."
-# Displays candidates.
+# Displays candidates:
 puts "\nCandidates running are: "
 puts roster
-# User instructions to vote.
+# User instructions to vote:
 puts "\nStep right in to the voting booth.\nFollow the instructions to cast your vote!\n\n"
 
 # Builds voting instructions using range. 
@@ -102,19 +101,18 @@ voters.times do |i|
 		puts "Thank you voter ##{i+1} for placing your vote for " << roster[vote-1] << "."
 	
 	# Adds write in candidate and tally to ballot_box.
-	# Also works if two voters write in same candidate.
-	# Also will work if vote writes in canididate on list.
+	# Works if voter writes in canididate in ballot_box.
 	else 
 		# Formats write-in vote.
 		vote = vote.capitalize 
 		# Candidate is called as key in ballot_box hash.
 		# New candidate's value is set to default + 1.
-		# Candidate in hash is called current value is increased by 1.
+		# When candidate in hash is wrote-in, current value is increased by 1.
 		ballot_box[vote] = ballot_box[vote] + 1 
 		# Thank you and confirmation user statement.
 		puts "Thank you voter ##{i+1} for writing in a vote for " << vote << "."
-	end
-		
+	end	
+	
 	# Give out "I voted" sticker.
 	puts "	Here's an \"I Voted!\" sitcker! \n\n "
 end
