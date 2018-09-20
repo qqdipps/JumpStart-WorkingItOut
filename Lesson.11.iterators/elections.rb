@@ -27,23 +27,20 @@ Handle grammar of vote summary saying vote or votes appropriately
 
 
 
-# puts "\n new line check \n learned about new line"
-
 # Initialize candidate (array and dictionary) 
-# (dictionary then can tally votes):
-# 'roster' is array containing candidate.
+# (dictionary then can tally votes) and number of voters:
+# Roster will be stored as an array containing candidates.
 # Update roster to add more candidates.
 roster = ["Marge", "Homer", "Lisa"]
 # Number of voters can be changed using voters var.
 voters = 10
 # Build ballot box from roster:
 # Intialize ballot_box hash with defualt of 0 (if key is called not in hash value is 0)
-# Key will be canidate, value will be number of votes.
+# Key will be candidate, value will be number of votes.
 ballot_box = Hash.new(0)
-
-# For each candidate on roster, add them to ballot box with defualt value
+# For each candidate on the roster, add candidate to ballot_box with defualt value
 roster.each do |candidate|
-# Sets candidate equal to defualt value. 
+	# Sets candidate equal to defualt value. 
 	ballot_box[candidate] = ballot_box[candidate]
 end
 
@@ -53,9 +50,9 @@ puts "You're vote will decide who will be the Springfield Comptroller."
 # Displays candidates:
 puts "\nCandidates running are: "
 puts roster
-# User instructions to vote:
-puts "\nStep right in to the voting booth.\nFollow the instructions to cast your vote!\n\n"
 
+# Instructions to vote:
+puts "\nStep right in to the voting booth.\nFollow the instructions to cast your vote!\n\n"
 # Builds voting instructions using range. 
 # Range is based on how many canidates are in roster.
 (1..roster.length()).each do |i|  
@@ -63,29 +60,29 @@ puts "\nStep right in to the voting booth.\nFollow the instructions to cast your
 	# Vote is associated to Roster indexing by (i-1).
 	puts "		Vote #{i} for " + roster[i-1] + "." 
 end
-
-# Write in candidate instructions.
+# Write in candidate instructions:
 puts "\nIf none of these candidates \"woo you\", you may write in a candidate.\n\n"
 
+# Each voter cast a vote and vote is tallied:
 # Number of voters determined by voters var, set at begining of program.
 voters.times do |i|
-	# User prompted to vote.
+	# Voter prompt:
 	print "Voter ##{i+1} cast your vote: "
-	# User input for vote.
+	# Voter input:
 	vote = gets.chomp	
 
-	# Is vote valid? Checks if float is greater then # of canidates (string ok).
+	# Is vote valid? Checks if vote is greater then # of canidates (string ok).
 	# Purpose is to avoid out of bounds error when vote is used to index roster. 
-	while (vote.to_f > roster.length())
+	while (vote.to_i > roster.length())
 		# Invalid vote statement w/reason.
 		puts "Unable to process vote: invalid number selected.\n\n"
-		# User prompt to re-vote.
+		# Voter prompt to re-vote:
 		print "Voter #{i+1} re-cast your vote: "
-		# User input for re-vote.
+		# Voter input for re-vote:
 		vote = gets.chomp
 	end
 
-	# Checks vote against candidate. Is vote integer? 
+	# Checks vote against candidate. Is vote write-in or number? 
 	if vote.to_i.to_s == vote
 		# Vote changed to integer type for index calculations.
 		vote = vote.to_i
@@ -97,7 +94,7 @@ voters.times do |i|
 		# Canidate key is used to access value (number of votes)
 		# Value updated to be equal to value + 1 each time canidates recieves vote.
 		ballot_box[roster[vote-1]] = (ballot_box[roster[vote-1]] + 1)
-		# Thank you and confirmation user statement.
+		# Thank you and confirmation statement:
 		puts "Thank you voter ##{i+1} for placing your vote for " << roster[vote-1] << "."
 	
 	# Adds write in candidate and tally to ballot_box.
