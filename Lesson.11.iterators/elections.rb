@@ -31,14 +31,12 @@ Handle grammar of vote summary saying vote or votes appropriately
 
 # Initialize candidate (array and dictionary) 
 # (dictionary then can tally votes).
-
+#==================================
 # 'roster' is array containing candidate.
 # Update roster to add more candidate
 roster = ["Marge", "Homer", "Lisa"]
-
 # Number of voters can be changed using voters var 
 voters = 10
-
 # Build ballot box from roster
 # Intialize ballot_box hash with defualt of 0 (if key is called not in hash value is 0)
 # Key will be canidate, value will be number of votes.
@@ -53,11 +51,9 @@ end
 # Election statement.
 puts "\nThe Simpsons are running for office!"
 puts "You're vote will decide who will be the Springfield Comptroller."
-
 # Displays candidates.
 puts "\nCandidates running are: "
 puts roster
-
 # User instructions to vote.
 puts "\nStep right in to the voting booth.\nFollow the instructions to cast your vote!\n\n"
 
@@ -94,7 +90,6 @@ voters.times do |i|
 	if vote.to_i.to_s == vote
 		# Vote changed to integer type for index calculations.
 		vote = vote.to_i
-
 		# Increases candidate tally.
 		# Methodology:
 		# (vote-1) is the roster index position of canidate selected.
@@ -103,27 +98,25 @@ voters.times do |i|
 		# Canidate key is used to access value (number of votes)
 		# Value updated to be equal to value + 1 each time canidates recieves vote.
 		ballot_box[roster[vote-1]] = (ballot_box[roster[vote-1]] + 1)
-
 		# Thank you and confirmation user statement.
 		puts "Thank you voter ##{i+1} for placing your vote for " << roster[vote-1] << "."
 	
-		# Adds write in candidate and tally to ballot_box.
-		# Also works if two voters write in same candidate.
-		# Also will work if vote writes in canididate on list.
+	# Adds write in candidate and tally to ballot_box.
+	# Also works if two voters write in same candidate.
+	# Also will work if vote writes in canididate on list.
 	else 
-		# formats write in vote
+		# Formats write-in vote.
 		vote = vote.capitalize 
-		
 		# Candidate is called as key in ballot_box hash.
 		# New candidate's value is set to default + 1.
 		# Candidate in hash is called current value is increased by 1.
 		ballot_box[vote] = ballot_box[vote] + 1 
-		
 		# Thank you and confirmation user statement.
 		puts "Thank you voter ##{i+1} for writing in a vote for " << vote << "."
 	end
-		# Give out "I voted" sticker.
-		puts "	Here's an \"I Voted!\" sitcker! \n\n "
+		
+	# Give out "I voted" sticker.
+	puts "	Here's an \"I Voted!\" sitcker! \n\n "
 end
 puts ballot_box
 
