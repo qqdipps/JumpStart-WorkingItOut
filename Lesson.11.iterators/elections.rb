@@ -160,5 +160,7 @@ else
 	puts "#{winner} has been elected Comptroller of Springfield!!"
 end
 
+########TIE LOGIC CAN ONLY HANDLE TWO WAY TIE. THINKING LOGIC TO FIX.
+
 # if tie ask if run off votes 
 # if yes conduct vote off similar as to regular vote but no write ins
