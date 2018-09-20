@@ -137,8 +137,7 @@ ballot_box.each do | candidate, votes |
 	if votes == winner_tally
 		tie_tally = votes
 		tie_temp = candidate
-	end
-	
+	end	
 # determine winner 
 	if votes > winner_tally
 		winner_temp = candidate
