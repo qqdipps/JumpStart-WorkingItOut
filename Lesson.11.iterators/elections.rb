@@ -17,7 +17,7 @@ Some of these enhancements are better solved after having knowledge from lesson 
 try some and then come back and do others after lesson 12.
 
 Handle ties for a winner appropriately
-Handle grammar of vote summary saying vote or votes appropriately
+√Handle grammar of vote summary saying vote or votes appropriately
 √Handle write in votes
 √Consider how to handle more than 10 votes
 √Consider how to handle more than 3 candidates
@@ -27,15 +27,14 @@ Handle grammar of vote summary saying vote or votes appropriately
 
 
 
-# Initialize candidate (array and dictionary) 
-# (dictionary then can tally votes) and number of voters:
+# Initialize candidates and number of voters:
 # Roster will be stored as an array containing candidates.
 # Update roster to add more candidates.
 roster = ["Marge", "Homer", "Lisa"]
 # Number of voters can be changed using voters var.
 voters = 10
 # Build ballot box from roster:
-# Intialize ballot_box hash with defualt of 0 (if key is called not in hash value is 0).
+# Intialize ballot_box hash with defualt of 0 (if key is called not in hash, value is 0).
 # Key will be candidate, value will be number of votes.
 ballot_box = Hash.new(0)
 # For each candidate on the roster, add candidate to ballot_box with defualt value.
@@ -54,7 +53,7 @@ puts roster
 # Instructions to vote:
 puts "\nStep right in to the voting booth.\nFollow the instructions to cast your vote!\n\n"
 # Builds voting instructions using range. 
-# Range is based on how many canidates are in roster.
+# Range is based on how many candidates are in roster.
 (1..roster.length()).each do |i|  
 	# Generate vote number (i) using range.
 	# Vote is associated to Roster indexing by (i-1).
@@ -71,13 +70,13 @@ voters.times do |i|
 	# Voter input:
 	vote = gets.chomp	
 
-	# Is vote valid? Checks if vote is greater then # of canidates (string ok).
+	# Is vote valid? Checks if vote is greater then # of candidates (string ok).
 	# Purpose is to avoid out of bounds error when vote is used to index roster. 
 	while (vote.to_i > roster.length())
 		# Invalid vote statement w/reason.
 		puts "Unable to process vote: invalid number selected.\n\n"
 		# Voter prompt to re-vote:
-		print "Voter #{i+1} re-cast your vote: "
+		print "Voter #{i+1} re-cast your vote: " 
 		# Voter input for re-vote:
 		vote = gets.chomp
 	end
@@ -89,11 +88,11 @@ voters.times do |i|
 		vote = vote.to_i
 		# Increases candidate tally.
 		# Methodology:
-		# (vote-1) is the roster index position of canidate selected.
-		# Roster index returns selected canidate string.
-		# Canidate string used as key in ballot box hash.
-		# Canidate key is used to access value (number of votes)
-		# Value updated to be equal to value + 1 each time canidates recieves vote.
+		# (vote-1) is the roster index position of candidate selected.
+		# Roster index returns selected candidate string.
+		# candidate string used as key in ballot box hash.
+		# candidate key is used to access value (number of votes)
+		# Value updated to be equal to value + 1 each time candidates recieves vote.
 		ballot_box[roster[vote-1]] = (ballot_box[roster[vote-1]] + 1)
 		# Thank you and confirmation statement:
 		puts "Thank you voter ##{i+1} for placing your vote for " << roster[vote-1] << "."
@@ -114,13 +113,53 @@ voters.times do |i|
 	# Give out "I voted" sticker.
 	puts "	Here's an \"I Voted!\" sitcker! \n\n "
 end
-puts ballot_box
-
 
 # display message about voting being completed and votes being counted
-# return votes totals
+puts "Voting polls are now closed."
+puts "Thank you, voters for participating in the election \nfor the Springfield Comptroller!"
+puts "\nLet's open the ballot box and count the votes: "
+
+#Intializing winner and tie tally and placeholder vars.
+winner_tally = 0
+winner_temp = ""
+tie_tally = 0
+tie_temp = ""
+
+# Iterates over ballot_box to display totals, determine winner, and set tie counters.
+ballot_box.each do | candidate, votes |
+# Display voting totals.
+	if votes == 1
+		puts "	#{candidate} recieved #{votes} vote."
+	else
+		puts "	#{candidate} recieved #{votes} votes."
+	end
+# tie counters
+	if votes == winner_tally
+		tie_tally = votes
+		tie_temp = candidate
+	end
+	
 # determine winner 
-# winner statement
+	if votes > winner_tally
+		winner_temp = candidate
+		winner_tally = votes
+	end
+end
+
+#Intializing winner variables (winner_2 if tie)
+winner = winner_temp
+
+# evaluate tie counters and determines winner
+if tie_tally == winner_tally
+	winner_2 = tie_temp
+	# Announcement of tie and shared position
+	puts "\nWowza! there's a tie!"
+	puts "#{winner_2} and #{winner} have been elected Co-Comptrollers of Springfield!"
+else
+	# winner statement
+	puts "\nWe have a winner:"
+	puts "#{winner} has been elected Comptroller of Springfield!!"
+end
+
 # if tie ask if run off votes 
 # if yes conduct vote off similar as to regular vote but no write ins
-# if no announce tie and shared position
