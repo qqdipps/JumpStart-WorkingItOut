@@ -128,9 +128,7 @@ puts "\nLet's open the ballot box and count the votes: "
 
 #Intializing winner and tie tally and placeholder vars.
 winner_tally = 0
-winner_temp = ""
-tie_tally = 0
-tie_temp = ""
+winner_arr = []
 
 # Iterates over ballot_box to display totals, determine winner, and set tie counters.
 ballot_box.each do | candidate, votes |
@@ -140,32 +138,57 @@ ballot_box.each do | candidate, votes |
 	else
 		puts "	#{candidate} recieved #{votes} votes."
 	end
-# tie counters
-	if votes == winner_tally
-		tie_tally = votes
-		tie_temp = candidate
-	end	
-# determine winner 
+# determine winner number votes
 	if votes > winner_tally
-		winner_temp = candidate
 		winner_tally = votes
 	end
 end
 
-#Intializing winner variables (winner_2 if tie)
-winner = winner_temp
-
-# evaluate tie counters and determines winner
-if tie_tally == winner_tally
-	winner_2 = tie_temp
-	# Announcement of tie and shared position
-	puts "\nWowza! there's a tie!"
-	puts "#{winner_2} and #{winner} have been elected Co-Comptrollers of Springfield!"
-else
-	# winner statement
-	puts "\nWe have a winner:"
-	puts "#{winner} has been elected Comptroller of Springfield!!"
+# Checks ballot_box for canidates with winning number votes.
+# Each canidiate with that number of votes is added to array winner_arr.
+# Then candidate is removed from ballot_boc, as only first key with requested value is returned.
+# If all keys are returned, nil is added for each additional iteration.
+ballot_box.each do |x|
+	winner_arr << ballot_box.key(winner_tally)
+	ballot_box.delete(ballot_box.key(winner_tally))
 end
+#Removes nil from array
+winner_arr = winner_arr.compact
+
+#prints formatted list of winners w/ correct grammer.
+(0...winner_arr.length()).each do |i|
+	if winner_arr.length() != 1
+		if winner_arr[i] == winner_arr[-1]
+			print "and #{winner_arr[i]}"
+		elsif winner_arr.length() == 2
+			print "#{winner_arr[i]} "
+		else
+		print "#{winner_arr[i]}, "
+		end
+	else
+		print winner_arr[i]	
+	end
+end
+if winner_arr.length() > 1
+	puts " have been elected Comptrollers of Springfield!"
+else
+	puts " has been elected Comptroller of Springfield!!"
+end
+
+# #Intializing winner variables (winner_2 if tie)
+# winner = winner_temp
+
+# # evaluate tie counters and determines winner
+# if tie_tally == winner_tally
+# 	winner_2 = tie_temp
+# 	# Announcement of tie and shared position
+# 	puts "\nWowza! there's a tie!"
+# 	puts "#{winner_2} and #{winner} have been elected Co-Comptrollers of Springfield!"
+# else
+# 	# winner statement
+# 	puts "\nWe have a winner:"
+# 	puts "#{winner} has been elected Comptroller of Springfield!!"
+# end
 
 ########TIE LOGIC CAN ONLY HANDLE TWO WAY TIE. THINKING LOGIC TO FIX.
 
@@ -179,11 +202,11 @@ Test Cases
 a) input (votes): number (1-3), new write-in, 2nd time write_in of new, write-in from roster
 b) output: 1 winner
 
-2.
 a) input (votes): test for invalid entries (vote >roster.length(), vote = 0, vote =""). Check beg, middle, end.
 b) output: 2 winner tie 
 
-
+3.
+b) output: >2 winner tie 
 --------------TEST 1--------------
 
 The Simpsons are running for office!
@@ -218,38 +241,38 @@ Thank you voter #3 for placing your vote for Lisa.
 	Here's an "I Voted!" sitcker!
 
 
-Voter #4 cast your vote: 3
-Thank you voter #4 for placing your vote for Lisa.
+Voter #4 cast your vote: lisa
+Thank you voter #4 for writing in a vote for Lisa.
 	Here's an "I Voted!" sitcker!
 
 
-Voter #5 cast your vote: lISA
-Thank you voter #5 for writing in a vote for Lisa.
+Voter #5 cast your vote: Maggie
+Thank you voter #5 for writing in a vote for Maggie.
 	Here's an "I Voted!" sitcker!
 
 
-Voter #6 cast your vote: MaggiE
+Voter #6 cast your vote: magGie
 Thank you voter #6 for writing in a vote for Maggie.
 	Here's an "I Voted!" sitcker!
 
 
-Voter #7 cast your vote: maggie
-Thank you voter #7 for writing in a vote for Maggie.
+Voter #7 cast your vote: 3
+Thank you voter #7 for placing your vote for Lisa.
 	Here's an "I Voted!" sitcker!
 
 
-Voter #8 cast your vote: lisA
-Thank you voter #8 for writing in a vote for Lisa.
+Voter #8 cast your vote: 2
+Thank you voter #8 for placing your vote for Homer.
 	Here's an "I Voted!" sitcker!
 
 
-Voter #9 cast your vote: Lisa
-Thank you voter #9 for writing in a vote for Lisa.
+Voter #9 cast your vote: 3
+Thank you voter #9 for placing your vote for Lisa.
 	Here's an "I Voted!" sitcker!
 
 
-Voter #10 cast your vote: 2
-Thank you voter #10 for placing your vote for Homer.
+Voter #10 cast your vote: 3
+Thank you voter #10 for placing your vote for Lisa.
 	Here's an "I Voted!" sitcker!
 
 
@@ -262,11 +285,11 @@ Let's open the ballot box and count the votes:
 	Homer recieved 2 votes.
 	Lisa recieved 5 votes.
 	Maggie recieved 2 votes.
-
-We have a winner:
 Lisa has been elected Comptroller of Springfield!!
 
-----------------TEST 2----------------
+
+---------------TEST 3---------------------
+
 The Simpsons are running for office!
 You're vote will decide who will be the Springfield Comptroller.
 
@@ -284,51 +307,33 @@ Follow the instructions to cast your vote!
 
 If none of these candidates "woo you", you may write in a candidate.
 
-Voter #1 cast your vote: 0
-Unable to process vote: invalid number selected.
-
-Voter 1 re-cast your vote:
-Unable to process vote: invalid number selected.
-
-Voter 1 re-cast your vote: 6
-Unable to process vote: invalid number selected.
-
-Voter 1 re-cast your vote: 1
+Voter #1 cast your vote: 1
 Thank you voter #1 for placing your vote for Marge.
 	Here's an "I Voted!" sitcker!
 
 
-Voter #2 cast your vote: 0
-Unable to process vote: invalid number selected.
-
-Voter 2 re-cast your vote:
-Unable to process vote: invalid number selected.
-
-Voter 2 re-cast your vote: 2
+Voter #2 cast your vote: 2
 Thank you voter #2 for placing your vote for Homer.
 	Here's an "I Voted!" sitcker!
 
 
-Voter #3 cast your vote: 4
-Unable to process vote: invalid number selected.
-
-Voter 3 re-cast your vote: 1
-Thank you voter #3 for placing your vote for Marge.
+Voter #3 cast your vote: 3
+Thank you voter #3 for placing your vote for Lisa.
 	Here's an "I Voted!" sitcker!
 
 
-Voter #4 cast your vote: 2
-Thank you voter #4 for placing your vote for Homer.
+Voter #4 cast your vote: 1
+Thank you voter #4 for placing your vote for Marge.
 	Here's an "I Voted!" sitcker!
 
 
-Voter #5 cast your vote: 1
-Thank you voter #5 for placing your vote for Marge.
+Voter #5 cast your vote: 2
+Thank you voter #5 for placing your vote for Homer.
 	Here's an "I Voted!" sitcker!
 
 
-Voter #6 cast your vote: 2
-Thank you voter #6 for placing your vote for Homer.
+Voter #6 cast your vote: 3
+Thank you voter #6 for placing your vote for Lisa.
 	Here's an "I Voted!" sitcker!
 
 
@@ -342,22 +347,13 @@ Thank you voter #8 for placing your vote for Homer.
 	Here's an "I Voted!" sitcker!
 
 
-Voter #9 cast your vote: 1
-Thank you voter #9 for placing your vote for Marge.
+Voter #9 cast your vote: 3
+Thank you voter #9 for placing your vote for Lisa.
 	Here's an "I Voted!" sitcker!
 
 
-Voter #10 cast your vote: 0
-Unable to process vote: invalid number selected.
-
-Voter 10 re-cast your vote:
-Unable to process vote: invalid number selected.
-
-Voter 10 re-cast your vote: 6
-Unable to process vote: invalid number selected.
-
-Voter 10 re-cast your vote: 2
-Thank you voter #10 for placing your vote for Homer.
+Voter #10 cast your vote: Grandpa
+Thank you voter #10 for writing in a vote for Grandpa.
 	Here's an "I Voted!" sitcker!
 
 
@@ -366,10 +362,8 @@ Thank you, voters for participating in the election
 for the Springfield Comptroller!
 
 Let's open the ballot box and count the votes:
-	Marge recieved 5 votes.
-	Homer recieved 5 votes.
-	Lisa recieved 0 votes.
-
-Wowza! there's a tie!
-Homer and Marge have been elected Co-Comptrollers of Springfield!
-=end
+	Marge recieved 3 votes.
+	Homer recieved 3 votes.
+	Lisa recieved 3 votes.
+	Grandpa recieved 1 vote.
+Marge, Homer, and Lisa have been elected Comptrollers of Springfield!
