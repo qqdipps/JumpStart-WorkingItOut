@@ -16,7 +16,7 @@ Optional Enhancements
 Some of these enhancements are better solved after having knowledge from lesson 12, so you can 
 try some and then come back and do others after lesson 12.
 
-+/-Handle ties for a winner appropriately
+√Handle ties for a winner appropriately
 √Handle grammar of vote summary saying vote or votes appropriately
 √Handle write in votes
 √Consider how to handle more than 10 votes
@@ -81,7 +81,7 @@ voters.times do |i|
 	end
 	# Checks vote against candidate. Is vote write-in or number? 
 	# Is vote valid? Checks if vote is empty, 0, or is greater then # of candidates (string ok).
-	# Purpose is to avoid out of bounds error when vote is used to index roster. 
+	# Purpose is to avoid out of bounds error or return incorrect candidate when vote is used to index roster. 
 	while (vote.to_i > roster.length() || (vote.to_i == 0 && vote.to_i.to_s == vote)  || vote.empty?)
 		# Invalid vote statement w/reason.
 		puts "Unable to process vote: invalid number selected.\n\n"
@@ -98,8 +98,8 @@ voters.times do |i|
 		# Methodology:
 		# (vote-1) is the roster index position of candidate selected.
 		# Roster index returns selected candidate string.
-		# candidate string used as key in ballot box hash.
-		# candidate key is used to access value (number of votes)
+		# Candidate string used as key in ballot box hash.
+		# Candidate key is used to access value (number of votes)
 		# Value updated to be equal to value + 1 each time candidates recieves vote.
 		ballot_box[roster[vote-1]] = (ballot_box[roster[vote-1]] + 1)
 		# Thank you and confirmation statement:
@@ -121,16 +121,16 @@ voters.times do |i|
 	puts "	Here's an \"I Voted!\" sitcker! \n\n "
 end
 
-# display message about voting being completed and votes being counted
+# Display message about voting being completed and votes being counted.
 puts "Voting polls are now closed."
 puts "Thank you, voters for participating in the election \nfor the Springfield Comptroller!"
 puts "\nLet's open the ballot box and count the votes: "
 
-#Intializing winner and tie tally and placeholder vars.
+#Intializing winner tally var and winner results array.
 winner_tally = 0
-winner_arr = []
+win_result = []
 
-# Iterates over ballot_box to display totals, determine winner, and set tie counters.
+# Iterates over ballot_box to display totals and determines winning number of votes.
 ballot_box.each do | candidate, votes |
 # Display voting totals.
 	if votes == 1
@@ -138,59 +138,51 @@ ballot_box.each do | candidate, votes |
 	else
 		puts "	#{candidate} recieved #{votes} votes."
 	end
-# determine winner number votes
+# winner_tally is initalized to equal 0. The first candidate with # votes 
+# greater than 0, updates winner_tally to be equal to their # of votes.
+# Each iteration checks if current candidates vote is greater then winner_tally.
+# If it is, winner_tally gets updated. By the end of the iterations winner_tally
+# var holds the highest number of votes.
 	if votes > winner_tally
 		winner_tally = votes
 	end
 end
 
 # Checks ballot_box for canidates with winning number votes.
-# Each canidiate with that number of votes is added to array winner_arr.
-# Then candidate is removed from ballot_boc, as only first key with requested value is returned.
-# If all keys are returned, nil is added for each additional iteration.
+# Each canidiate with that number of votes is added to array win_result.
+# Then candidate is removed from ballot_box, as only first key with requested value is returned.
+# (If all candidate(s) with highest number of votes are/is returned, 
+# nil is added for each additional iteration and will have be removed later)
 ballot_box.each do |x|
-	winner_arr << ballot_box.key(winner_tally)
+	win_result << ballot_box.key(winner_tally)
 	ballot_box.delete(ballot_box.key(winner_tally))
 end
-#Removes nil from array
-winner_arr = winner_arr.compact
 
-#prints formatted list of winners w/ correct grammer.
-(0...winner_arr.length()).each do |i|
-	if winner_arr.length() != 1
-		if winner_arr[i] == winner_arr[-1]
-			print "and #{winner_arr[i]}"
-		elsif winner_arr.length() == 2
-			print "#{winner_arr[i]} "
-		else
-		print "#{winner_arr[i]}, "
+#Removes nil from array.
+win_result = win_result.compact
+
+# Prints formatted list of winners w/ correct grammer.
+# WINNER 1 has ..
+# WINNER 1 and WINNER 2 have ...
+# WINNER 1, WINNER 2, WINNER n-1, and WINNER n have ....
+win_result.each do |entry|
+	#if there are 1 or 2 winners then the first entry should only be candidate's name & space.
+	if win_result.length() <=2 &&  entry == win_result[0]
+		print "#{entry} "
+		#if there is only 1 winner then singular winner comment is appended.
+		if win_result.length() == 1	
+			puts "has been elected Comptroller of Springfield!!"
 		end
+	#if there is 3 or more winners then each entry is printed with candidate's name, comma, & space.
+	#unless entry is the last winner then it is handled by else statement. 
+	elsif entry != win_result[-1]
+		print "#{entry}, "
+	#if there is more than one entry the last entry is 'and', space, candidate's name, space, & pluaral winning comment.
 	else
-		print winner_arr[i]	
+		puts "and #{entry} have been elected Comptrollers of Springfield!"
 	end
 end
-if winner_arr.length() > 1
-	puts " have been elected Comptrollers of Springfield!"
-else
-	puts " has been elected Comptroller of Springfield!!"
-end
 
-# #Intializing winner variables (winner_2 if tie)
-# winner = winner_temp
-
-# # evaluate tie counters and determines winner
-# if tie_tally == winner_tally
-# 	winner_2 = tie_temp
-# 	# Announcement of tie and shared position
-# 	puts "\nWowza! there's a tie!"
-# 	puts "#{winner_2} and #{winner} have been elected Co-Comptrollers of Springfield!"
-# else
-# 	# winner statement
-# 	puts "\nWe have a winner:"
-# 	puts "#{winner} has been elected Comptroller of Springfield!!"
-# end
-
-########TIE LOGIC CAN ONLY HANDLE TWO WAY TIE. THINKING LOGIC TO FIX.
 
 # if tie ask if run off votes 
 # if yes conduct vote off similar as to regular vote but no write ins
@@ -206,6 +198,7 @@ a) input (votes): test for invalid entries (vote >roster.length(), vote = 0, vot
 b) output: 2 winner tie 
 
 3.
+a) input: update roster and voters
 b) output: >2 winner tie 
 --------------TEST 1--------------
 
@@ -366,4 +359,5 @@ Let's open the ballot box and count the votes:
 	Homer recieved 3 votes.
 	Lisa recieved 3 votes.
 	Grandpa recieved 1 vote.
-Marge, Homer, and Lisa have been elected Comptrollers of Springfield!
+Marge, Homer, and Lisa have been elected Comptrollers of Springfield
+=end
