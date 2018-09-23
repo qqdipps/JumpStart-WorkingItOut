@@ -10,6 +10,7 @@
 #### 11  Iterators     
 - [Springfield Elections](https://github.com/qqdipps/JumpStart-WorkingItOut/blob/master/Lesson.11.iterators/elections.rb)      
 #### 12	Arrays     
+- [Student Account Generator](https://github.com/qqdipps/JumpStart-WorkingItOut/blob/master/Lesson.12.Array/Account_Generator.rb)
 #### 13	Hashes     
 
 
