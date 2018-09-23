@@ -87,6 +87,7 @@ num_loops.times do |i|
 	email_builder += "@adadevelopersacademy.org"
 	email_addresses <<  email_builder
 end
+
 # Prints name, ID number and email address for each student in parallel.
 num_loops.times do |i|
 	puts names[i] + " " + id_numbers[i] + " " + email_addresses[i]
