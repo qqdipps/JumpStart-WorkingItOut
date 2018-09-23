@@ -25,7 +25,8 @@ try some and then come back and do others after lesson 12.
 
 =end
 
-
+# Springfield Election
+# by qqdipps
 
 # Initialize candidates and number of voters:
 # Roster will be stored as an array containing candidates.
