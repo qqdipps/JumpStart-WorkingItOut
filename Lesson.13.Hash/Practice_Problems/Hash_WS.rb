@@ -36,3 +36,17 @@ menu["tea"] = "green"
 puts menu.length == 3
 puts menu["burger"] == "bleu sun"
 puts menu["tater_tots"] == nil
+
+=begin 
+CONSOLE:
+{18-09-23 15:20}[ruby-2.4.1]Savannahs-MBP:~/AdaJumpStart/Lesson.13.Hash/Practice_Problems@master✗✗✗✗✗✗ qqdipps% ruby Hash_WS.rb
+true
+true
+true
+true
+true
+true
+true
+true
+
+= end
