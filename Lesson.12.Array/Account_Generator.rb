@@ -35,17 +35,17 @@ Example output: student emails
 
 Optional Enhancements
 √make sure none of the IDs are duplicates
-	=> loop to check if rand # generated is already in id_number array.
+	=> loop contiues to generate rand num until num is not already in id_number array.
 
 √account for ID numbers whose last 3 digits are less 
 than 100 (e.g. 111008) because these ID numbers will generate an 
 email address with less than 3 digits at the end without special cases.
-	=> changed numbers to string 
+	=> changed numbers to string before adding to id_numbers array
 
 √on email generation, account for first names with a space in them
 e.g. if the first name is "Mary Jane", then the first initial 
 should be "MJ" rather than just "M"
-	=>added check: if fist space does not equal last space then take first char 
+	=>added check: if index of fist space does not equal index of last space then take first char 
 	after first space and append it to email builder string.
 
 √read in the student names from a file instead of the user and 
@@ -61,8 +61,9 @@ id_numbers = []
 email_addresses = []
 
 # Reads student names from file Student_Names.txt
+# Adds sudents names to names array.
 File.open("Student_Names.txt").each do |student_name| 
- 	names << student_name.chomp
+ 	names << student_name.chomp.upcase 
 end
 # Number of loops based on how many names are added to names array.
 num_loops = names.length() 
@@ -76,7 +77,7 @@ num_loops.times do
 	id_numbers << rand_num.to_s
 end
 
-# Email addresss is built to specification (see requirements line 30-32) with optional enhancements.
+# Email addresss is built to specification (see requirements lines 30-32) with optional enhancements (lines 40-49).
 num_loops.times do |i|
 	email_builder =  names[i].slice(0) 
 	if names[i].index(" ") != names[i].rindex(" ")
@@ -96,10 +97,11 @@ end
 =begin 
 Console output:
 
-Savannah Dippolito 695565 SDippolito565@adadevelopersacademy.org
-Sam Ram Bamjam 594689 SRBamjam689@adadevelopersacademy.org
-Donna Mae Ronaldson 430509 DMRonaldson509@adadevelopersacademy.org
-Penny Wennyia 419349 PWennyia349@adadevelopersacademy.org
-Gigi Gorgeouson 263930 GGorgeouson930@adadevelopersacademy.org
+{18-09-23 13:18}[ruby-2.4.1]Savannahs-MBP:~/AdaJumpStart/Lesson.12.Array@master✗✗✗✗✗✗ qqdipps% ruby Account_Generator.rb
+SAVANNAH DIPPOLITO 323805 SDIPPOLITO805@adadevelopersacademy.org
+SAM RAM BAMJAM 838658 SRBAMJAM658@adadevelopersacademy.org
+DONNA MAE RONALDSON 773204 DMRONALDSON204@adadevelopersacademy.org
+PENNY WENNYIA 562800 PWENNYIA800@adadevelopersacademy.org
+GIGI GORGEOUSON 268516 GGORGEOUSON516@adadevelopersacademy.org
 
 =end
