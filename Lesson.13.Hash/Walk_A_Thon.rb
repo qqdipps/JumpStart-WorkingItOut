@@ -44,19 +44,106 @@ Consider how to handle 500 walkers
 Consider each walker earning a different amount per lap walked
 =end
 
-# outline
+# outline + comments + code
+tracker = {}
+total_earned = 0
 # welcome statements
+puts "Welcome to the United Walk-A-Thon"
+puts "Our goal is to raise money to help fund programs to 
+support people who are targets of systemic oppression."
 # Earning goal for the walk-a-thon prompt
+puts "\n\nTRACKER"
+puts "=========================\n\n"
+print "Goal: $ "
 # user input
+goal = gets.chomp.to_f
 # Amount earned per lap completed (per person) prompt
+print "Amount earned per lap completed (per person): $ "
 # user input
+amount = gets.chomp.to_f
 # Number of laps completed for 5 people
-# loop for each person for user input of laps walked
-# store data in hash (key walker #, value # laps
+
+puts "Number of laps walked per walker?"
+5.times do |i|
+	# loop for each person for user input of laps walked
+	walker = "##{i + 1}"
+	print "Walker #{walker}: "
+	laps = gets.chomp.to_i
+	# store data in hash (key = walker #, value = # laps)
+	tracker[walker] = laps
+end
+winner =  tracker.max_by {|key,value| value} 
+puts "\nWalker #{winner[0]} earned the most money: $ #{(winner[1] * amount)}."
+puts "\n\nUnited Walk-A-Thon Results:"
+puts "=========================\n\n"
 # Have the walk-a-thon program calculate and output the following:
 # Who earned the most money
 # which key as max value?
 # Total amount earned in the walk-a-thon
-# what is the sum of values * 2.5?
+total_earned =  tracker.values.inject { | result, elem | result + (elem * amount) }
+puts "Total raised was $#{total_earned}.\n"
 # Whether or not the earning goal was met
 # is total earned greater than goal?
+puts (total_earned > goal ? "Congratulations! Goal was met!" : "We fell short, let's try another fundraiser to make our goal!") + "\n\n"
+
+=begin 
+CONSOLE
+Test cases:
+1. Goal not met.
+2. Goal met.
+
+------------TEST 1------------
+{18-09-24 12:22}[ruby-2.4.1]Savannahs-MBP:~/AdaJumpStart/Lesson.13.Hash@master✗✗✗✗✗✗ qqdipps% ruby Walk_A_Thon.rb
+Welcome to the United Walk-A-Thon
+Our goal is to raise money to help fund programs to
+support people who are targets of systemic oppression.
+
+
+TRACKER
+=========================
+
+Goal: $ 1000
+Amount earned per lap completed (per person): $ 4.45
+Number of laps walked per walker?
+Walker #1: 30
+Walker #2: 20
+Walker #3: 34
+Walker #4: 54
+Walker #5: 23
+
+Walker #4 earned the most money: $ 240.3.
+
+
+United Walk-A-Thon Results:
+=========================
+
+Total raised was $612.95.
+We fell short, let's try another fundraiser to make our goal!
+
+------------TEST 2------------
+{18-09-24 12:23}[ruby-2.4.1]Savannahs-MBP:~/AdaJumpStart/Lesson.13.Hash@master✗✗✗✗✗✗ qqdipps% ruby Walk_A_Thon.rb
+Welcome to the United Walk-A-Thon
+Our goal is to raise money to help fund programs to
+support people who are targets of systemic oppression.
+
+
+TRACKER
+=========================
+
+Goal: $ 3340
+Amount earned per lap completed (per person): $ 7.75
+Number of laps walked per walker?
+Walker #1: 23
+Walker #2: 200
+Walker #3: 53
+Walker #4: 235
+Walker #5: 32
+
+Walker #4 earned the most money: $ 1821.25.
+
+
+United Walk-A-Thon Results:
+=========================
+
+Total raised was $4053.0.
+Congradulations! Goal was met!
