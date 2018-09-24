@@ -20,6 +20,10 @@
 
 
 #### 13	Hashes     
+- [Student Account Generator Version 2.0](https://github.com/qqdipps/JumpStart-WorkingItOut/blob/master/Lesson.13.Hash/Account_Generator_Continued.rb)      
+     Refactored program Student Account Generator to utilize hashes instead of multiple arrays.  
+- [United Walk-A-Thon](https://github.com/qqdipps/JumpStart-WorkingItOut/blob/master/Lesson.13.Hash/Walk_A_Thon.rb)     
+     Tracker program for walk-a-thon.
 
 
 
