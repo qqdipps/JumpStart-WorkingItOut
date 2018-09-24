@@ -70,48 +70,66 @@ loops inside this loop for other functionality)
 # by qqdipps
 
 #intiate array and counter
-student_data = []
+students_data = []
 i = 0
 
 # Reads student names from file Student_Names.txt
 # Number of loops based on how many names are in file.
 File.open("Student_Names.txt").each do |student_name| 
 	#intiates hash with key symbol :name and value students_name
-	student_data[i] = {name: student_name.chomp.upcase}
+	students_data[i] = {name: student_name.chomp.upcase}
 
-	# Student ID is generated and check against each hash to see if duplicate student ID is present.
-	rand_num = rand(111111..999999)
-	(i).times  do |j|
-		while (student_data[j].has_value?(rand_num))
-			rand_num = rand(111111..999999)
-			puts rand_num
+	# Unique student ID.
+	# If student id is duplicate student id is reset , new id is generated, and rechecked
+	# against all vlaues, process continues until student ID is unique.
+	# This code is a little smellly.
+	# (Previous code did not recheck hash after student id is found to 
+	# be duplicate and new student id is generated. (Previous entry 
+	# could have equaled new student ID.))
+	# Intialize student_id as var for flow control in until loop.
+	student_id = false
+	while student_id == false 
+		# Student id is generated.
+		student_id = rand(111111..999999)
+		# Opens array to access hashes.
+		students_data.each do |student_hash|
+			student_hash.each do |key, value|
+				if value == student_id
+					# Var student_id is reset for flow control in until loop.
+					student_id = false
+					break
+				end
+			end
 		end
 	end	
-	
 	# Unique Student ID value is converted to string.
 	# Added to hash associated with key sybmol :ID.
-	student_data[i][:ID]= rand_num.to_s
+	students_data[i][:ID]= student_id.to_s
 
 	# Email addresss is built to specification (see requirements lines 30-32) 
 	# with optional enhancements (lines 40-49).
-	full_name =  student_data[i][:name]
-	email_builder =  full_name.slice(0) 
+	full_name =  students_data[i][:name]
+	initial =  full_name.slice(0) 
+	# Checks for 2 first names and adds second intial if present.
 	if full_name.index(" ") != full_name.rindex(" ")
-	 	email_builder += full_name.slice(full_name.index(" ") + 1) 
+	 	initial += full_name.slice(full_name.index(" ") + 1) 
 	end
-	email_builder += full_name.slice((full_name.rindex(" ") + 1)..-1)
-	email_builder += student_data[i][:ID].slice(-3..-1)
-	email_builder += "@adadevelopersacademy.org"
-
+	last_name = full_name.slice((full_name.rindex(" ") + 1)..-1)
+	last_3_of_ID = students_data[i][:ID].slice(-3..-1)
+	domain = "@adadevelopersacademy.org"
+	email_builder = initial + last_name + last_3_of_ID + domain
 	# Added to hash with key symbol :email.
-	 student_data[i][:email] = email_builder
+	 students_data[i][:email] = email_builder
 
 	# Prints name, ID number and email address for each student in parallel.
-	puts "#{full_name} #{student_data[i][:ID]} #{student_data[i][:email]} "
+	puts "#{full_name} #{students_data[i][:ID]} #{students_data[i][:email]} "
 	i += 1
 end
-puts student_data #checking data stored properly.
+puts students_data #checking data stored properly.
 =begin 
+
+Thinking about better flow control...
+
 Console output:
 
 {18-09-23 22:33}[ruby-2.4.1]Savannahs-MBP:~/AdaJumpStart/Lesson.13.Hash@master✗✗✗✗✗✗ qqdipps% ruby Account_Generator_Continued.rb
