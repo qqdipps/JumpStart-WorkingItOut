@@ -49,7 +49,7 @@ Consider each walker earning a different amount per lap walked
 tracker = {}
 total_earned = 0
 # Welcome statements.
-puts "Welcome to the United Walk-A-Thon"
+puts "\nWelcome to the United Walk-A-Thon!"
 puts "Our goal is to raise money to help fund programs to 
 support people who are targets of systemic oppression."
 # Earning goal for the walk-a-thon prompt.
@@ -119,13 +119,13 @@ puts total_earned > goal ? "Congratulations! Our goal was met! \nWe surpassed ou
 =begin 
 CONSOLE
 Test cases:
-1. Goal not met, with 3 way tie
+1. Goal not met, with 4 way tie
 2. Goal met, single winner.
 
 ------------TEST 1------------
-{18-10-08 21:46}[ruby-2.4.1]Savannahs-MacBook-Pro:~/AdaJumpStart/Lesson.13.Hash@master✗✗✗✗✗✗ qqdipps% ruby Walk_A_Thon.rb
+{18-10-08 21:51}[ruby-2.4.1]Savannahs-MacBook-Pro:~/AdaJumpStart/Lesson.13.Hash@master✗✗✗✗✗✗ qqdipps% ruby Walk_A_Thon.rb
 
-Welcome to the United Walk-A-Thon
+Welcome to the United Walk-A-Thon!
 Our goal is to raise money to help fund programs to
 support people who are targets of systemic oppression.
 
@@ -133,60 +133,61 @@ support people who are targets of systemic oppression.
 TRACKER
 =========================
 
-Goal: $ 1337
-Amount earned per lap completed (per person): $ 4.50
-Number of laps walked per walker?
-Walker #1: 10
-Walker #2: 8
-Walker #3: 9
-Walker #4: 10
-Walker #5: 10
-
-
-While there are no winners in a Walk-A-Thon.
-We would like to take a moment and acknowledge those who
-contributed the time and energy to walk the talk:
-
-Walker #1, #4, and #5 have each earned the most money, $45.00 by walking 10 laps a piece.
-
-
-United Walk-A-Thon Results:
-=========================
-
-Total raised was $211.50
-We fell short by $1125.50, let's try another fundraiser to make our goal!
-
-----------Test 2----------
-{18-10-08 21:47}[ruby-2.4.1]Savannahs-MacBook-Pro:~/AdaJumpStart/Lesson.13.Hash@master✗✗✗✗✗✗ qqdipps% ruby Walk_A_Thon.rb
-
-Welcome to the United Walk-A-Thon
-Our goal is to raise money to help fund programs to
-support people who are targets of systemic oppression.
-
-
-TRACKER
-=========================
-
-Goal: $ 1337
+Goal: $ 500
 Amount earned per lap completed (per person): $ 5
 Number of laps walked per walker?
-Walker #1: 25
-Walker #2: 68
-Walker #3: 70
-Walker #4: 80
-Walker #5: 90
+Walker #1: 10
+Walker #2: 10
+Walker #3: 10
+Walker #4: 10
+Walker #5: 8
 
 
 While there are no winners in a Walk-A-Thon.
 We would like to take a moment and acknowledge those who
 contributed the time and energy to walk the talk:
 
-Walker #5 has earned the most money, $450.00 by walking 90 laps.
+Walker #1, #2, #3, and #4 have each earned the most money, $50.00 by walking 10 laps a piece.
 
 
 United Walk-A-Thon Results:
 =========================
 
-Total raised was $1665.00
+Total raised was $240.00
+We fell short by $260.00, let's try another fundraiser to make our goal!
+
+---------------TEST 2------------
+{18-10-08 21:53}[ruby-2.4.1]Savannahs-MacBook-Pro:~/AdaJumpStart/Lesson.13.Hash@master✗✗✗✗✗✗ qqdipps% ruby Walk_A_Thon.rb
+
+Welcome to the United Walk-A-Thon!
+Our goal is to raise money to help fund programs to
+support people who are targets of systemic oppression.
+
+
+TRACKER
+=========================
+
+Goal: $ 260
+Amount earned per lap completed (per person): $ 2.35
+Number of laps walked per walker?
+Walker #1: 88
+Walker #2: 67
+Walker #3: 45
+Walker #4: 24
+Walker #5: 122
+
+
+While there are no winners in a Walk-A-Thon.
+We would like to take a moment and acknowledge those who
+contributed the time and energy to walk the talk:
+
+Walker #5 has earned the most money, $286.70 by walking 122 laps.
+
+
+United Walk-A-Thon Results:
+=========================
+
+Total raised was $813.10
 Congratulations! Our goal was met!
-We surpassed our goal by $328.00!
+We surpassed our goal by $553.10!
+=end
