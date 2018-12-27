@@ -7,7 +7,7 @@
 - [Mad-Lips](https://github.com/qqdipps/JumpStart-WorkingItOut/blob/master/Lesson.9.Grammer/madlib.rb)       
      Program accepts input from the user and outputs a completed MadLib.
 #### 10	Relational operators, Logical operators, Conditionals   
-- [Virtual Candy Machine](https://github.com/qqdipps/JumpStart-WorkingItOut/blob/master/Lesson.10.Expressions/CandyMachine.rb) 
+- [Virtual Candy Machine](https://github.com/qqdipps/JumpStart-WorkingItOut/blob/master/Lesson.10.Expressions/CandyMachine.rb)  
      Program models a vending machine.
 - [OOP VCM](https://gist.github.com/qqdipps/2023aae5b98b6314840d399b143bedc1)  
      Object oriented program modeling a vending machine. 
