@@ -59,7 +59,7 @@ puts"" #format
 # If money is less than 0  statement evaluates as true, 'while false || true' thus 'while true' : while block will be
 # executed. If money is not less than 0; 'while false || false' : while block will be skipped.
 # If while block is executed then loops until correct number format not less than 0 is entered by user.
-until  "%0.2f" % [moneyUser.to_f] == moneyUser || moneyUser.to_i.to_s == moneyUser && moneyUser.to_f > 0 #money should be positive and numeric
+until  ("%0.2f" % [moneyUser.to_f] == moneyUser || moneyUser.to_i.to_s == moneyUser) && moneyUser.to_f > 0 #money should be positive and numeric
 
 	#user statement for invalid input
 	puts "Please insert some money using numeric dollar formatting."
